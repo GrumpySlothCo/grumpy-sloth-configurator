@@ -16,7 +16,7 @@ export const ExternalLinks = () => (
   <ExternalLinkContainer>
     <a href="https://grumpysloth.co/" target="_blank">
       <CategoryIconContainer>
-        <VIALogo height="25px" fill="currentColor" />
+        <VIALogo height="25px" />
         <CategoryMenuTooltip>Grumpy Sloth</CategoryMenuTooltip>
       </CategoryIconContainer>
     </a>

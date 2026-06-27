@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import imgSrc from 'assets/images/chippy_600.png';
 import {Theme} from 'src/utils/themes';
 import {getDarkenedColor} from 'src/utils/color-math';
 import {getSelectedTheme} from 'src/store/settingsSlice';
@@ -8,7 +7,6 @@ import {useAppSelector} from 'src/store/hooks';
 const defaultChippy = {
   width: 300,
   height: 300,
-  src: imgSrc,
 };
 
 const LoaderContainer = styled.div`
@@ -65,32 +63,6 @@ type Props = {
   height?: number;
   theme: Theme;
 };
-
-const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
-  const {theme} = props;
-
-  const darkAccent = getDarkenedColor(theme.accent.c, 0.8);
-  const colorMap = {
-    'upper-body': theme.mod.t,
-    'lower-body': theme.mod.c,
-    accent: darkAccent,
-    bowtie: darkAccent,
-    pins: darkAccent,
-    feet: '#000',
-  };
-  return (
-    <svg
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      x={0}
-      y={0}
-      viewBox="0 0 600 600"
-      style={{
-        enableBackground: 'new 0 0 600 600',
-      }}
-      xmlSpace="preserve"
-      {...props}
-    >
       <style>
         {`.st3{fill:#fdfefe}.st4{fill:${colorMap.bowtie}}.st5{fill-rule:evenodd;clip-rule:evenodd;fill:${colorMap.accent}}.st7,.st9{fill-rule:evenodd;clip-rule:evenodd}.st10,.st9{fill:#fff}`}
       </style>
@@ -237,7 +209,7 @@ const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
 
 export default function ChippyLoader(props: Props) {
   const width = props.width || defaultChippy.width;
-  const height = props.width || defaultChippy.height;
+  const height = props.height || defaultChippy.height;
   const containerPadding = width * 0.25;
   const [containerHeight, containerWidth] = [
     height + containerPadding * 2,
@@ -257,9 +229,16 @@ export default function ChippyLoader(props: Props) {
           style={{
             zIndex: 1,
             width: width,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          <SvgComponent theme={props.theme} />
+          <img
+            src="/Grumpy_Sloth_Logo.png"
+            alt="Grumpy Sloth"
+            style={{width: width * 0.7, height: 'auto'}}
+          />
         </div>
       </CircleContainer>
     </LoaderContainer>
