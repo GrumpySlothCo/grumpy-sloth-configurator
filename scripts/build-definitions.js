@@ -10,8 +10,9 @@ const fs = require('fs');
 const path = require('path');
 
 const args = process.argv.slice(2);
-const outputDir = args[0] || './public/definitions';
 const shouldForceBuild = args.includes('--fresh') || args.includes('-f');
+const positionalArgs = args.filter((a) => !a.startsWith('-'));
+const outputDir = positionalArgs[0] || './public/definitions';
 
 if (!shouldForceBuild && fs.existsSync(outputDir)) {
   console.log('Definitions already built. Pass --fresh to rebuild.');

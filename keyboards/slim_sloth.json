@@ -17,7 +17,12 @@
                         {
                             "label": "Enable LED",
                             "type": "toggle",
-                            "content": [0, 1, 1]
+                            "content": ["id_caps_lock_enable", 0, 1]
+                        },
+                        {
+                            "label": "Color",
+                            "type": "color",
+                            "content": ["id_caps_lock_color", 0, 4]
                         }
                     ]
                 },
@@ -27,7 +32,12 @@
                         {
                             "label": "Enable LED",
                             "type": "toggle",
-                            "content": [0, 2, 1]
+                            "content": ["id_num_lock_enable", 0, 2]
+                        },
+                        {
+                            "label": "Color",
+                            "type": "color",
+                            "content": ["id_num_lock_color", 0, 5]
                         }
                     ]
                 },
@@ -37,7 +47,12 @@
                         {
                             "label": "Enable LED",
                             "type": "toggle",
-                            "content": [0, 3, 1]
+                            "content": ["id_scroll_lock_enable", 0, 3]
+                        },
+                        {
+                            "label": "Color",
+                            "type": "color",
+                            "content": ["id_scroll_lock_color", 0, 6]
                         }
                     ]
                 }
