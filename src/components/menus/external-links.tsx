@@ -1,4 +1,4 @@
-import {faDiscord, faGithub} from '@fortawesome/free-brands-svg-icons';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import {VIALogo} from '../icons/via';
@@ -14,19 +14,13 @@ const ExternalLinkContainer = styled.span`
 
 export const ExternalLinks = () => (
   <ExternalLinkContainer>
-    <a href="https://caniusevia.com/" target="_blank">
+    <a href="https://grumpysloth.co/" target="_blank">
       <CategoryIconContainer>
         <VIALogo height="25px" fill="currentColor" />
-        <CategoryMenuTooltip>Firmware + Docs</CategoryMenuTooltip>
+        <CategoryMenuTooltip>Grumpy Sloth</CategoryMenuTooltip>
       </CategoryIconContainer>
     </a>
-    <a href="https://discord.gg/NStTR5YaPB" target="_blank">
-      <CategoryIconContainer>
-        <FontAwesomeIcon size={'xl'} icon={faDiscord} />
-        <CategoryMenuTooltip>Discord</CategoryMenuTooltip>
-      </CategoryIconContainer>
-    </a>
-    <a href="https://github.com/the-via/app" target="_blank">
+    <a href="https://github.com/GrumpySlothCo/grumpy-sloth-configurator" target="_blank">
       <CategoryIconContainer>
         <FontAwesomeIcon size={'xl'} icon={faGithub} />
         <CategoryMenuTooltip>Github</CategoryMenuTooltip>

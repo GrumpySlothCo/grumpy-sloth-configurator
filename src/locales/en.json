@@ -122,8 +122,8 @@
   "Render Mode": "Render Mode",
   "Show Diagnostic Information": "Show Diagnostic Information",
   "Requires connected device": "Requires connected device",
-  "VIA Firmware Protocol": "VIA Firmware Protocol",
-  "VIA Firmware Version": "VIA Firmware Version",
+  "VIA Firmware Protocol": "Firmware Protocol",
+  "VIA Firmware Version": "Firmware Version",
   "Authorize New": "Authorize New",
   "Check Key": "Check Key",
   "Your current firmware does not support macros. Install the latest firmware for your device.": "Your current firmware does not support macros. Install the latest firmware for your device.",
@@ -359,6 +359,6 @@
   "Searching for devices...": "Searching for devices...",
   "This feature is not available for this firmware version": "This feature is not available for this firmware version",
   "Please enter your desired QMK keycode or hex code:": "Please enter your desired QMK keycode or hex code:",
-  "This feature is intended for development purposes. If your keyboard is not recognized automatically by VIA, please contact your keyboard's manufacturer or vendor.": "This feature is intended for development purposes. If your keyboard is not recognized automatically by VIA, please contact your keyboard's manufacturer or vendor.",
+  "This feature is intended for development purposes. If your keyboard is not recognized automatically by VIA, please contact your keyboard's manufacturer or vendor.": "This feature is intended for development purposes. If your keyboard is not recognised, please contact Grumpy Sloth support.",
   "You didn't click \"Confirm\". To enable the Design tab, you must confirm first.": "You didn't click \"Confirm\". To enable the Design tab, you must confirm first."
 }

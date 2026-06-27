@@ -1,7 +1,7 @@
 {
-    "name": "VIA",
-	"short_name": "VIA",
-	"description": "VIA - Your keyboard's best friend",
+    "name": "Grumpy Sloth Configurator",
+	"short_name": "GS Config",
+	"description": "Configure your Grumpy Sloth keyboard",
 	"start_url": ".",
     "icons": [
         {
@@ -15,7 +15,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#dadada",
-    "background_color": "#dadada",
+    "theme_color": "#232c39",
+    "background_color": "#232c39",
     "display": "standalone"
 }
