@@ -23,6 +23,11 @@ import {
   getSelectedKeyboardAPI,
 } from 'src/store/devicesSlice';
 import {getExpressions, saveMacros} from 'src/store/macrosSlice';
+import {
+  getSelectedCustomMenuData,
+  getCustomCommands,
+  updateSelectedCustomMenuData,
+} from 'src/store/menusSlice';
 import {useTranslation} from 'react-i18next';
 
 type ViaSaveFile = {
@@ -31,6 +36,7 @@ type ViaSaveFile = {
   layers: string[][];
   macros?: string[];
   encoders?: [string, string][][];
+  customMenuData?: {[commandName: string]: number[]};
 };
 
 const isViaSaveFile = (obj: any): obj is ViaSaveFile =>
@@ -58,6 +64,8 @@ export const Pane: FC = () => {
   const macros = useAppSelector((state) => state.macros);
   const expressions = useAppSelector(getExpressions);
   const {basicKeyToByte, byteToKey} = useAppSelector(getBasicKeyToByte);
+  const customMenuData = useAppSelector(getSelectedCustomMenuData);
+  const customCommands = useAppSelector(getCustomCommands);
 
   // TODO: improve typing so we can remove this
   if (!selectedDefinition || !selectedDevice || !api) {
@@ -119,6 +127,17 @@ export const Pane: FC = () => {
         suggestedName,
       });
       const encoderValues = await getEncoderValues();
+
+      // Exclude synthetic keys that are not real firmware values
+      const EXCLUDED_MENU_KEYS = new Set(['__perKeyRGB', 'id_firmware_version']);
+      const filteredMenuData = customMenuData
+        ? Object.fromEntries(
+            Object.entries(customMenuData).filter(
+              ([k]) => !EXCLUDED_MENU_KEYS.has(k),
+            ),
+          )
+        : undefined;
+
       const saveFile: ViaSaveFile = {
         name,
         vendorProductId,
@@ -131,6 +150,10 @@ export const Pane: FC = () => {
             ), // TODO: should empty string be empty keycode instead?
         ),
         encoders: encoderValues,
+        ...(filteredMenuData &&
+          Object.keys(filteredMenuData).length > 0 && {
+            customMenuData: filteredMenuData as {[k: string]: number[]},
+          }),
       };
 
       const content = stringify(saveFile);
@@ -240,6 +263,30 @@ export const Pane: FC = () => {
               ),
             ),
           ),
+        );
+      }
+
+      if (
+        saveFile.customMenuData &&
+        !Array.isArray(customCommands) &&
+        Object.keys(customCommands).length > 0
+      ) {
+        const channelsToCommit = new Set<number>();
+        for (const [name, values] of Object.entries(saveFile.customMenuData)) {
+          const cmd = (customCommands as Record<string, number[]>)[name];
+          if (cmd && Array.isArray(values)) {
+            await (api as any).setCustomMenuValue(...cmd, ...values);
+            channelsToCommit.add(cmd[0]);
+          }
+        }
+        for (const channel of channelsToCommit) {
+          await (api as any).commitCustomMenu(channel);
+        }
+        dispatch(
+          updateSelectedCustomMenuData({
+            devicePath: selectedDevice.path,
+            menuData: saveFile.customMenuData,
+          }),
         );
       }
 
